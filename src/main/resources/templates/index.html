@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>hell world</title>
+    <th:block th:replace="~{includes/commonScripts.html :: head}"/>
+</head>
+<body>
+<h1>Meetup2</h1>
+<form th:action="@{/login}" th:object="${auth}" method="post">
+
+<span th:if="${authentication}"
+<!--if user is not logged-->
+<a href="login" class="btn btn-info" role="button">Log in</a>
+<a href="register" class="btn btn-info" role="button">Register</a>
+<!--if user is logged-->
+logged as user:
+</form>
+<th:block th:replace="~{includes/commonScripts.html :: end-of-body}"/>
+</body>
+</html>
