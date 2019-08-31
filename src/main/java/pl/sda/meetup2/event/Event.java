@@ -1,5 +1,6 @@
 package pl.sda.meetup2.event;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import pl.sda.meetup2.comment.Comment;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Table(name = "events")
 @Getter
 @Setter
+@Builder
 public class Event {
 
     @Id
@@ -36,7 +38,6 @@ public class Event {
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
-//    @Column(name = "comments")
     @OneToMany(mappedBy = "event")
     private Set<Comment> comments;
 

@@ -12,11 +12,6 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-//    @GetMapping("/login")
-//    public String getLoginForm(){
-//        return "loginForm";
-//    }
-
     @GetMapping("/login")
     public String getLoginForm(Model model) {
         String userName = userService.getLoggedUserName();

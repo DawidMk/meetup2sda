@@ -6,10 +6,6 @@ import pl.sda.meetup2.dto.RegisterFormDto;
 import pl.sda.meetup2.role.Role;
 import pl.sda.meetup2.role.RoleRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 @Component
 public class DtoToUserConverter {
 
@@ -28,16 +24,7 @@ public class DtoToUserConverter {
                 .password(passwordEncoder.encode(registerFormDto.getPassword()))
                 .nickname(registerFormDto.getNickname())
                 .build();
-
-        if (user.getRoles() == null) {
-            Set<Role> roles = new HashSet<>();
-            roles.add(role);
-            user.setRoles(roles);
-        } else {
-            Set<Role> roles = user.getRoles();
-            roles.add(role);
-            user.setRoles(roles);
-        }
+        user.addRole(role);
         return user;
     }
 }

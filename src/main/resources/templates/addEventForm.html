@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>register form</title>
+    <th:block th:replace="~{includes/commonScripts.html :: head}"/>
+</head>
+<body>
+<form th:action="@{/addEvent}" th:object="${addEventFormDto}" method="post">
+    <table>
+        <tr>
+            <td><label for="eventName">title</label></td>
+            <td>
+                <input type="text"
+                       th:field="*{eventName}">
+            <span th:errors="*{eventName}"></span>
+            </td>
+            <!--<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>-->
+        </tr>
+        <tr>
+            <td><label for="eventName">title</label></td>
+            <td>
+                <input type="text"
+                       th:field="*{eventName}">
+                <span th:errors="*{eventName}"></span>
+            </td>
+            <!--<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>-->
+        </tr>
+        <tr>
+            <td><label for="password">password</label></td>
+            <td><input type="datetime-local" th:field="*{password}">
+                <span th:errors="*{password}"></span>
+            </td>
+            <!--<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">-->
+
+        </tr>
+        <tr>
+            <td><label for="nickname">nickname</label></td>
+            <td><input type="text" th:field="*{nickname}">
+                <span th:errors="*{nickname}"></span>
+            </td>
+            <!--<td th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">-->
+
+        </tr>
+        <tr>
+            <td>
+                <button>register</button>
+            </td>
+        </tr>
+    </table>
+    <a href="/" class="btn btn-info" role="button">main page</a>
+</form>
+<th:block th:replace="~{includes/commonScripts.html :: end-of-body}"/>
+</body>
+</html>

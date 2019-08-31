@@ -5,6 +5,7 @@ import lombok.Setter;
 import pl.sda.meetup2.user.User;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,7 +23,7 @@ public class Role {
     private String roleName;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
     public void add(User user) {
         users.add(user);
