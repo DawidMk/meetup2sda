@@ -11,16 +11,16 @@ import pl.sda.meetup2.exception.UserExistsException;
 public class UserService {
 
     private final UserDao userDao;
-    private final UserMapper userMapper;
+    private final DtoToUserConverter dtoToUserConverter;
 
-    public UserService(UserDao userDao, UserMapper userMapper) {
+    public UserService(UserDao userDao, DtoToUserConverter dtoToUserConverter) {
         this.userDao = userDao;
-        this.userMapper = userMapper;
+        this.dtoToUserConverter = dtoToUserConverter;
     }
 
     public void saveUserToDb(RegisterFormDto registerFormDto) {
         if (userDao.findUserInDb(registerFormDto.getEmail()).isEmpty()) {
-            userDao.saveUserToDb(userMapper.rewriteDtoToUser(registerFormDto));
+            userDao.saveUserToDb(dtoToUserConverter.rewriteDtoToUser(registerFormDto));
         } else {
             throw new UserExistsException("user already exists!");
         }

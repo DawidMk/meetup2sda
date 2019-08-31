@@ -7,15 +7,15 @@
 </head>
 <body>
 <h1>Meetup2</h1>
-<form th:action="@{/login}" th:object="${auth}" method="post">
 
-<span th:if="${authentication}"
-<!--if user is not logged-->
-<a href="login" class="btn btn-info" role="button">Log in</a>
-<a href="register" class="btn btn-info" role="button">Register</a>
-<!--if user is logged-->
-logged as user:
-</form>
+<!--<span th:if="${loggedUserName==null}">-->
+<span th:if="${@userService.getLoggedUserName() == null}">
+    <a href="login" class="btn btn-info" role="button">Log in</a>
+    <a href="register" class="btn btn-info" role="button">Register</a>
+</span>
+<span th:if="${@userService.getLoggedUserName() != null}">
+<h1 th:text="${@userService.getLoggedUserName()}"/>
+</span>
 <th:block th:replace="~{includes/commonScripts.html :: end-of-body}"/>
 </body>
 </html>

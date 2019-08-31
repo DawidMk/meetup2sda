@@ -1,11 +1,15 @@
 package pl.sda.meetup2.user;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import pl.sda.meetup2.comment.Comment;
 import pl.sda.meetup2.event.Event;
 import pl.sda.meetup2.role.Role;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -35,14 +39,22 @@ public class User {
     @OneToMany(mappedBy = "owner")
     private Set<Event> events;
 
-//    @Column(name = "comments")
+    //    @Column(name = "comments")
     @OneToMany(mappedBy = "commenter")
     private Set<Comment> comments;
 
-    @ManyToMany(mappedBy = "users")
-    private Set<Role> roles;
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public void addRule(Role role) {
+        roles.add(role);
+        role.add(this);
+    }
 
     public User() {
     }
-
 }

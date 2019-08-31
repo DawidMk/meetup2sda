@@ -21,11 +21,10 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
+    public void add(User user) {
+        users.add(user);
+    }
 }
