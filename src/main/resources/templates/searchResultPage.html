@@ -17,20 +17,12 @@
     </select>
     <button>wyszukaj</button>
 </form>
-<br>
-<span th:if="${@userService.getLoggedUserName() == null}">
-    <a href="login" class="btn btn-info" role="button">Log in</a>
-    <a href="register" class="btn btn-info" role="button">Register</a>
-</span>
-<span th:if="${@userService.getLoggedUserName() != null}">
-logged as user: <text th:text="${@userService.getLoggedUserName()}"/><br>
-        <a href="addEvent" class="btn btn-info" role="button">dodaj wydarzenie</a>
-</span>
-<h2>lista wydarzeń</h2>
-<ul th:each="event : ${events}">
+
+<h2>znalezione wydarzenia</h2>
+<ul th:each="event : ${foundEvents}">
 nazwa wydarzenia:
     <h3>
-        <a th:href="@{'/eventDetails/'+${event.getId()}}"><li th:text="${event.getEventName()}"></li></a>
+        <a href="/eventDetails"><li th:text="${event.getEventName()}"></li></a>
     </h3>
     początek:
     <li th:text="${event.getStartDate()}"></li>

@@ -18,33 +18,33 @@
             <!--<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>-->
         </tr>
         <tr>
-            <td><label for="eventName">title</label></td>
+            <td><label for="description">description</label></td>
             <td>
                 <input type="text"
-                       th:field="*{eventName}">
-                <span th:errors="*{eventName}"></span>
+                       th:field="*{description}">
+                <span th:errors="*{description}"></span>
             </td>
             <!--<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>-->
         </tr>
         <tr>
-            <td><label for="password">password</label></td>
-            <td><input type="datetime-local" th:field="*{password}">
-                <span th:errors="*{password}"></span>
+            <td><label for="startDate">start date</label></td>
+            <td><input type="text" th:field="*{startDate}" placeholder="yyyy/MM/dd">
+                <span th:errors="*{startDate}"></span>
             </td>
             <!--<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">-->
 
         </tr>
         <tr>
-            <td><label for="nickname">nickname</label></td>
-            <td><input type="text" th:field="*{nickname}">
-                <span th:errors="*{nickname}"></span>
+            <td><label for="endDate">end date</label></td>
+            <td><input type="text" th:field="*{endDate}" placeholder="yyyy/MM/dd">
+                <span th:errors="*{endDate}"></span>
             </td>
             <!--<td th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">-->
 
         </tr>
         <tr>
             <td>
-                <button>register</button>
+                <button>add event</button>
             </td>
         </tr>
     </table>

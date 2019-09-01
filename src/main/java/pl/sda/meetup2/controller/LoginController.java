@@ -9,8 +9,13 @@ import pl.sda.meetup2.user.UserService;
 @Controller
 public class LoginController {
 
-    @Autowired
+    private final
     UserService userService;
+
+    @Autowired
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/login")
     public String getLoginForm(Model model) {

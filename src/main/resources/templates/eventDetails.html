@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>event details</title>
+    <th:block th:replace="~{includes/commonScripts.html :: head}"/>
+</head>
+<body>
+nazwa wydarzenia:
+    <h3>
+        <li th:text="${event.getEventName()}"></li>
+    </h3>
+    początek:
+    <li th:text="${event.getStartDate()}"></li>
+    koniec:
+    <li th:text="${event.getEndDate()}"></li>
+    opis:
+    <li th:text="${event.getDescription()}"></li>
+</ul>
+<br>
+<h3>komentarze:</h3>
+<br>
+
+<form th:action="@{/addEvent}">
+    komentarz: <input type="text" name="comment" id="comment" placeholder="twój komentarz..."/>
+    <button>wyślij komentarz</button>
+</form>
+
+<th:block th:replace="~{includes/commonScripts.html :: end-of-body}"/>
+</body>
+</html>

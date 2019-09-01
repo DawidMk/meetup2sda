@@ -1,13 +1,11 @@
 package pl.sda.meetup2.event;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import pl.sda.meetup2.comment.Comment;
 import pl.sda.meetup2.user.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -15,6 +13,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Event {
 
     @Id
@@ -33,12 +33,11 @@ public class Event {
     private User owner;
 
     @Column(name = "start_date")
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column(name = "end_date")
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
     @OneToMany(mappedBy = "event")
     private Set<Comment> comments;
-
 }

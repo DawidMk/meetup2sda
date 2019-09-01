@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.sda.meetup2.dto.AddEventFormDto;
+import pl.sda.meetup2.event.Event;
 import pl.sda.meetup2.event.EventService;
 
 import javax.validation.Valid;
@@ -28,6 +30,11 @@ public class EventController {
         return "addEventForm";
     }
 
+    @GetMapping("/eventAddSuccess")
+    public String eventAddedSuccessPage() {
+        return "eventAddSuccess";
+    }
+
     @PostMapping("/addEvent")
     public String registerUser(
             @ModelAttribute
@@ -41,5 +48,12 @@ public class EventController {
         }
         eventService.saveEventToDb(addEventFormDto);
         return "redirect:/eventAddSuccess";
+    }
+
+    @GetMapping("/eventDetails/{id}")
+    public String getEventDetails(@PathVariable String id, Model model) {
+        Event event = eventService.findById(Integer.valueOf(id));
+        model.addAttribute("event", event);
+        return "eventDetails";
     }
 }
